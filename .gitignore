@@ -1,0 +1,25 @@
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+backend/venv/
+backend/.pytest_cache/
+*.db
+test_campusconnect.db
+backend/test_campusconnect.db
+backend/certificates/*.pdf
+backend/certificates/temp_qr/
+backend/qr_codes/*.png
+
+# Node & Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+.env
+.env.local
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
