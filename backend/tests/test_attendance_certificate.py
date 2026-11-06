@@ -78,3 +78,4 @@ def test_attendance_and_certificate_flow(client):
     assert verify_res.status_code == 200
     assert verify_res.json()["is_valid"] is True
     assert verify_res.json()["issued_to"] == "Attendance Student"
+

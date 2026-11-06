@@ -121,3 +121,4 @@ def check_user_feedback(
         Feedback.user_id == current_user.id
     ).first()
     return {"has_submitted": fb is not None, "feedback": fb}
+

@@ -149,3 +149,4 @@ def get_event_attendance_stats(
         "attendance_rate": round(rate, 1),
         "waitlist_count": waitlist_count
     }
+

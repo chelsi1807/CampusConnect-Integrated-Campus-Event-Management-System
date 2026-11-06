@@ -39,3 +39,4 @@ class Event(Base):
     feedbacks = relationship("Feedback", back_populates="event", cascade="all, delete-orphan")
     certificates = relationship("Certificate", back_populates="event", cascade="all, delete-orphan")
     attendances = relationship("Attendance", back_populates="event", cascade="all, delete-orphan")
+

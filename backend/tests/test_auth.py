@@ -65,3 +65,4 @@ def test_login_success_and_failure(client):
         json={"email": "login_user@example.edu", "password": "WrongPassword"}
     )
     assert res_fail.status_code == 401
+

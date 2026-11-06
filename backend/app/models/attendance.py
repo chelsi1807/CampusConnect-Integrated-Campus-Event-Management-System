@@ -20,3 +20,4 @@ class Attendance(Base):
     event = relationship("Event", back_populates="attendances")
     user = relationship("User", foreign_keys=[user_id])
     verified_by = relationship("User", foreign_keys=[verified_by_id])
+

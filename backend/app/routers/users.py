@@ -72,3 +72,4 @@ def change_user_role(
     db.commit()
     db.refresh(user)
     return user
+

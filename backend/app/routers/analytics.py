@@ -183,3 +183,4 @@ def get_student_analytics(
         "certificates_earned": certificates_earned,
         "upcoming_events_count": upcoming_count
     }
+

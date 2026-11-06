@@ -124,3 +124,4 @@ export default function QRPassModal({ isOpen, onClose, registration }) {
     </dialog>
   );
 }
+

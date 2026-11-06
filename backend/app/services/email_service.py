@@ -62,3 +62,4 @@ def send_notification(
             logger.warning(f"SMTP delivery failed (mocking/logging instead): {e}")
     else:
         logger.info(f"[Mock Email Sent] To: {user_email or f'User #{user_id}'} | Title: {title} | Message: {message}")
+

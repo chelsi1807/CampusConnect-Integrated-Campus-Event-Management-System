@@ -251,3 +251,4 @@ def change_event_status(
     db.commit()
     db.refresh(event)
     return enrich_event_response(event, db, current_user)
+

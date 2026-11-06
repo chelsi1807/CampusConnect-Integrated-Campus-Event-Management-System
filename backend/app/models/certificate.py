@@ -20,3 +20,4 @@ class Certificate(Base):
     registration = relationship("Registration", back_populates="certificate")
     event = relationship("Event", back_populates="certificates")
     user = relationship("User", back_populates="certificates")
+

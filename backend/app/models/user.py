@@ -24,3 +24,4 @@ class User(Base):
     feedbacks = relationship("Feedback", back_populates="user", cascade="all, delete-orphan")
     notifications = relationship("Notification", back_populates="user", cascade="all, delete-orphan")
     certificates = relationship("Certificate", back_populates="user", cascade="all, delete-orphan")
+

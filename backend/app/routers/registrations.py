@@ -257,3 +257,4 @@ def get_event_registrations(
     ).order_by(Registration.created_at.asc()).all()
     
     return [enrich_registration_detail(r, db) for r in regs]
+

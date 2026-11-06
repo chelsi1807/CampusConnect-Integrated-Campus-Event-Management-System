@@ -210,3 +210,4 @@ def verify_certificate(
         "issued_at": cert.issued_at,
         "message": "Certificate is verified and authentically issued by CampusConnect."
     }
+

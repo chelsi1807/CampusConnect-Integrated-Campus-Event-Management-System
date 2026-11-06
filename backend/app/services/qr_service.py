@@ -39,3 +39,4 @@ def save_qr_file(data: str, filename: str, output_dir: str = "qr_codes") -> str:
     img = qr.make_image(fill_color="#1E3A8A", back_color="white")
     img.save(file_path, format="PNG")
     return file_path
+

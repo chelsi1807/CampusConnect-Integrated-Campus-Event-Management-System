@@ -29,3 +29,4 @@ export default function StatusBadge({ status, position = null, size = 'sm' }) {
     </span>
   );
 }
+

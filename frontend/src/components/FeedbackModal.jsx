@@ -163,3 +163,4 @@ export default function FeedbackModal({ isOpen, onClose, eventId, eventTitle, on
     </dialog>
   );
 }
+

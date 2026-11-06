@@ -196,3 +196,4 @@ Event Management System/
 ├── start_frontend.bat           # 1-Click frontend launcher
 └── README.md                    # Project documentation
 ```
+

@@ -12,3 +12,4 @@ class Category(Base):
     color = Column(String(50), default="indigo", nullable=False)   # Color theme
 
     events = relationship("Event", back_populates="category")
+

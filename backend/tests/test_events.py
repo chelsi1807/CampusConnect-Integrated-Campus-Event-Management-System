@@ -71,3 +71,4 @@ def test_event_lifecycle(client):
     public_res2 = client.get("/api/events/")
     event_ids2 = [e["id"] for e in public_res2.json()["events"]]
     assert event_id in event_ids2
+

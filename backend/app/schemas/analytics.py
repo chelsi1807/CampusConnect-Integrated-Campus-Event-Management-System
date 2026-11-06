@@ -32,3 +32,4 @@ class StudentAnalyticsResponse(BaseModel):
     waitlisted_count: int
     certificates_earned: int
     upcoming_events_count: int
+

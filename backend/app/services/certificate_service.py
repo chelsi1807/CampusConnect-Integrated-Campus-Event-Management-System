@@ -238,3 +238,4 @@ def generate_certificate_pdf(
     
     doc.build(story, onFirstPage=draw_certificate_background)
     return pdf_path
+

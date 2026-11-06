@@ -82,3 +82,4 @@ def test_capacity_and_waitlist_auto_promotion(client):
     b_reg = [r for r in b_records if r["id"] == reg_b_id][0]
     assert b_reg["status"] == "confirmed"
     assert b_reg["waitlist_position"] is None
+

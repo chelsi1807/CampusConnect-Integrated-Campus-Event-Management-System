@@ -29,6 +29,7 @@ import CreateEvent from './pages/organizer/CreateEvent';
 import ManageEvents from './pages/organizer/ManageEvents';
 import EventAttendees from './pages/organizer/EventAttendees';
 import QRAttendanceScanner from './pages/organizer/QRAttendanceScanner';
+import EventReports from './pages/organizer/EventReports';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -128,6 +129,22 @@ export default function App() {
                   element={
                     <ProtectedRoute allowedRoles={['organizer', 'admin']}>
                       <QRAttendanceScanner />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/organizer/reports" 
+                  element={
+                    <ProtectedRoute allowedRoles={['organizer', 'admin']}>
+                      <EventReports />
+                    </ProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="/organizer/reports/:eventId" 
+                  element={
+                    <ProtectedRoute allowedRoles={['organizer', 'admin']}>
+                      <EventReports />
                     </ProtectedRoute>
                   } 
                 />
