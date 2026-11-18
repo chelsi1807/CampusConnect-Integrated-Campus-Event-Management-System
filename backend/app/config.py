@@ -1,5 +1,6 @@
 import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import field_validator
 from typing import Optional
 
 class Settings(BaseSettings):
@@ -9,6 +10,13 @@ class Settings(BaseSettings):
     
     # Database
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./campusconnect.db")
+    
+    @field_validator("DATABASE_URL", mode="after")
+    @classmethod
+    def assemble_db_url(cls, v: str) -> str:
+        if v and v.startswith("postgres://"):
+            return v.replace("postgres://", "postgresql://", 1)
+        return v
     
     # JWT & Security
     SECRET_KEY: str = os.getenv("SECRET_KEY", "campusconnect_ultra_secure_jwt_secret_key_2026_super_safe_key_384729")

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ShieldCheck, Award, Search, CheckCircle2, XCircle, Download, Calendar, MapPin, User, Building } from 'lucide-react';
-import api from '../api/client';
+import api, { getCertificateDownloadUrl } from '../api/client';
 
 export default function VerifyCertificate() {
   const [searchParams] = useSearchParams();
@@ -142,7 +142,7 @@ export default function VerifyCertificate() {
                 <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
                   <span>Signatory: <b>{result.organizer_name}</b></span>
                   <a
-                    href={`/api/certificates/download/${result.certificate_number}`}
+                    href={getCertificateDownloadUrl(result.certificate_number)}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-xs"

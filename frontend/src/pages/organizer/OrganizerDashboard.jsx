@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Calendar, 
-  PlusCircle, 
-  QrCode, 
-  Users, 
-  Award, 
-  Star, 
-  ArrowRight, 
-  Clock, 
-  CheckCircle2, 
+import {
+  Calendar,
+  PlusCircle,
+  QrCode,
+  Users,
+  Award,
+  Star,
+  ArrowRight,
+  Clock,
+  CheckCircle2,
   Layers,
   FileText
 } from 'lucide-react';
@@ -45,7 +45,7 @@ export default function OrganizerDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      
+
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-800 via-indigo-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 shadow-md border border-slate-800">
         <div>

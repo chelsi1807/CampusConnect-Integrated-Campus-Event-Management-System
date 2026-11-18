@@ -1,0 +1,60 @@
+# Render Blueprint: CampusConnect Fullstack Deployment
+# Documentation: https://render.com/docs/blueprint-spec
+
+services:
+  # -------------------------------------------------------------
+  # 1. Backend REST API Service (FastAPI + Python 3.11)
+  # -------------------------------------------------------------
+  - type: web
+    name: campusconnect-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt && alembic upgrade head
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: campusconnect-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: BASE_URL
+        fromService:
+          type: web
+          name: campusconnect-frontend
+          property: host
+          # Render will populate host, e.g., campusconnect-frontend.onrender.com
+
+  # -------------------------------------------------------------
+  # 2. Frontend Web Client (React 19 + Vite + Tailwind CSS)
+  # -------------------------------------------------------------
+  - type: web
+    name: campusconnect-frontend
+    runtime: static
+    rootDir: frontend
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: campusconnect-api
+          property: host
+
+# -------------------------------------------------------------
+# 3. Managed PostgreSQL Database
+# -------------------------------------------------------------
+databases:
+  - name: campusconnect-db
+    databaseName: campusconnect
+    user: campusadmin
+    plan: free

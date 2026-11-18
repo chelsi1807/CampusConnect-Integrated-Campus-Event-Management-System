@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Award, Download, ExternalLink, Calendar, CheckCircle2, Copy, Check } from 'lucide-react';
-import api from '../../api/client';
+import api, { getCertificateDownloadUrl } from '../../api/client';
 
 export default function MyCertificates() {
   const [certificates, setCertificates] = useState([]);
@@ -128,7 +128,7 @@ export default function MyCertificates() {
                 </button>
 
                 <a
-                  href={`/api/certificates/download/${cert.certificate_number}`}
+                  href={getCertificateDownloadUrl(cert.certificate_number)}
                   target="_blank"
                   rel="noreferrer"
                   className="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm flex items-center gap-1.5 transition-all"

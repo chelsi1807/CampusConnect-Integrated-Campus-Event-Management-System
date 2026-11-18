@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+// When deployed on Render or Vercel, VITE_API_URL can be set to e.g. "https://campusconnect-backend.onrender.com"
+export const API_BASE_URL = import.meta.env.VITE_API_URL
+  ? (import.meta.env.VITE_API_URL.replace(/\/$/, '') + '/api')
+  : '/api';
+
+export const getCertificateDownloadUrl = (certNum) => `${API_BASE_URL}/certificates/download/${certNum}`;
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -36,4 +43,3 @@ api.interceptors.response.use(
 );
 
 export default api;
-
