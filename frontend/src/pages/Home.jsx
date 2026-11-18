@@ -137,22 +137,22 @@ export default function Home() {
 
       {/* Metrics Counter Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
-        <div className="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200/80 dark:border-slate-800 p-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center transition-colors">
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-indigo-600">100%</div>
-            <div className="text-xs font-medium text-slate-500 mt-1">Centralized Digital Events</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">100%</div>
+            <div className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Centralized Digital Events</div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-600">Zero-Wait</div>
-            <div className="text-xs font-medium text-slate-500 mt-1">Automated Waitlist Promotion</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">Zero-Wait</div>
+            <div className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Automated Waitlist Promotion</div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-blue-600">&lt; 2s</div>
-            <div className="text-xs font-medium text-slate-500 mt-1">QR Attendance Verification</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-blue-600 dark:text-blue-400">&lt; 2s</div>
+            <div className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">QR Attendance Verification</div>
           </div>
           <div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-amber-600">Instant</div>
-            <div className="text-xs font-medium text-slate-500 mt-1">Verifiable PDF Certificates</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-amber-600 dark:text-amber-400">Instant</div>
+            <div className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-1">Verifiable PDF Certificates</div>
           </div>
         </div>
       </div>
@@ -161,10 +161,10 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-end mb-6">
           <div>
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">Explore by Interest</span>
-            <h2 className="text-2xl font-bold text-slate-900 mt-1">Campus Event Categories</h2>
+            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Explore by Interest</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-1">Campus Event Categories</h2>
           </div>
-          <Link to="/events" className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+          <Link to="/events" className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 flex items-center gap-1">
             <span>View All</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -175,12 +175,12 @@ export default function Home() {
             <Link
               key={cat.id}
               to={`/events?category_id=${cat.id}`}
-              className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:border-indigo-300 hover:-translate-y-1 transition-all text-center group"
+              className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-700 hover:-translate-y-1 transition-all text-center group"
             >
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mx-auto mb-2.5 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center mx-auto mb-2.5 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                 <Calendar className="w-5 h-5" />
               </div>
-              <div className="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">
+              <div className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                 {cat.name}
               </div>
             </Link>
@@ -192,10 +192,10 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-end mb-6">
           <div>
-            <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">Upcoming Highlights</span>
-            <h2 className="text-2xl font-bold text-slate-900 mt-1">Featured Campus Events</h2>
+            <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Upcoming Highlights</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-1">Featured Campus Events</h2>
           </div>
-          <Link to="/events" className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+          <Link to="/events" className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 flex items-center gap-1">
             <span>Explore All</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -204,13 +204,13 @@ export default function Home() {
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-80 bg-slate-100 rounded-2xl animate-pulse"></div>
+              <div key={i} className="h-80 bg-slate-100 dark:bg-slate-800 rounded-2xl animate-pulse"></div>
             ))}
           </div>
         ) : featuredEvents.length === 0 ? (
-          <div className="p-12 text-center bg-white rounded-2xl border border-slate-200">
-            <Calendar className="w-10 h-10 text-slate-300 mx-auto mb-2" />
-            <p className="text-sm text-slate-500">No events found currently.</p>
+          <div className="p-12 text-center bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <Calendar className="w-10 h-10 text-slate-300 dark:text-slate-600 mx-auto mb-2" />
+            <p className="text-sm text-slate-500 dark:text-slate-400">No events found currently.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -223,7 +223,7 @@ export default function Home() {
 
       {/* Lifecycle Workflow Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-tr from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-8 sm:p-12 text-white">
+        <div className="bg-gradient-to-tr from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-8 sm:p-12 text-white border border-slate-800">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider">How It Works</span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-1">
@@ -281,4 +281,3 @@ export default function Home() {
     </div>
   );
 }
-

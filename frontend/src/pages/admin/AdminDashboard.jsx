@@ -54,7 +54,7 @@ export default function AdminDashboard() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 shadow-md">
+      <div className="bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 shadow-md border border-purple-900/40">
         <div>
           <span className="text-xs font-semibold text-purple-300 uppercase tracking-wider">Administration Portal</span>
           <h1 className="text-2xl sm:text-3xl font-extrabold mt-1">
@@ -84,69 +84,69 @@ export default function AdminDashboard() {
 
       {/* Metrics Row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs">
-          <div className="flex justify-between items-center text-slate-400 mb-2">
-            <span className="text-xs font-semibold text-slate-500">Total Users</span>
-            <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-5 shadow-xs transition-colors">
+          <div className="flex justify-between items-center text-slate-400 dark:text-slate-500 mb-2">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Total Users</span>
+            <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
               <Users className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-extrabold text-slate-900">{data?.total_users || 0}</div>
-          <div className="text-[11px] text-slate-400 mt-1">
+          <div className="text-2xl font-extrabold text-slate-900 dark:text-white">{data?.total_users || 0}</div>
+          <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">
             {data?.total_students || 0} students • {data?.total_organizers || 0} organizers
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs">
-          <div className="flex justify-between items-center text-slate-400 mb-2">
-            <span className="text-xs font-semibold text-slate-500">Events Catalog</span>
-            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-5 shadow-xs transition-colors">
+          <div className="flex justify-between items-center text-slate-400 dark:text-slate-500 mb-2">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Events Catalog</span>
+            <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
               <Calendar className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-extrabold text-slate-900">{data?.total_events || 0}</div>
-          <div className="text-[11px] text-emerald-600 mt-1 font-medium">
+          <div className="text-2xl font-extrabold text-slate-900 dark:text-white">{data?.total_events || 0}</div>
+          <div className="text-[11px] text-emerald-600 dark:text-emerald-400 mt-1 font-medium">
             {data?.approved_events || 0} approved & active
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs">
-          <div className="flex justify-between items-center text-slate-400 mb-2">
-            <span className="text-xs font-semibold text-slate-500">Total Registrations</span>
-            <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-5 shadow-xs transition-colors">
+          <div className="flex justify-between items-center text-slate-400 dark:text-slate-500 mb-2">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Total Registrations</span>
+            <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
               <CheckCircle2 className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-extrabold text-slate-900">{data?.total_registrations || 0}</div>
-          <div className="text-[11px] text-slate-400 mt-1">
+          <div className="text-2xl font-extrabold text-slate-900 dark:text-white">{data?.total_registrations || 0}</div>
+          <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">
             {data?.total_attendance || 0} check-ins recorded
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs">
-          <div className="flex justify-between items-center text-slate-400 mb-2">
-            <span className="text-xs font-semibold text-slate-500">Verified Certificates</span>
-            <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 p-5 shadow-xs transition-colors">
+          <div className="flex justify-between items-center text-slate-400 dark:text-slate-500 mb-2">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">Verified Certificates</span>
+            <div className="w-8 h-8 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
               <Award className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-2xl font-extrabold text-amber-600">{data?.total_certificates || 0}</div>
-          <div className="text-[11px] text-slate-400 mt-1">Issued with cryptographic ID</div>
+          <div className="text-2xl font-extrabold text-amber-600 dark:text-amber-400">{data?.total_certificates || 0}</div>
+          <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-1">Issued with cryptographic ID</div>
         </div>
       </div>
 
       {/* Pending Approvals Notice Banner */}
       {data && data.pending_approvals > 0 && (
-        <div className="bg-amber-50 border border-amber-200 rounded-3xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 rounded-3xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-colors">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 flex items-center justify-center shrink-0">
               <AlertTriangle className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-sm font-bold text-amber-950">
+              <h3 className="text-sm font-bold text-amber-950 dark:text-amber-200">
                 {data.pending_approvals} Event Proposal{data.pending_approvals > 1 ? 's' : ''} Awaiting Administrative Review
               </h3>
-              <p className="text-xs text-amber-800">
+              <p className="text-xs text-amber-800 dark:text-amber-300/90">
                 Review organizer submissions to approve or reject with reasons.
               </p>
             </div>
@@ -165,10 +165,10 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         {/* Monthly Trend Area Chart */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-xs space-y-4">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-xs space-y-4 transition-colors">
           <div>
-            <h3 className="text-sm font-bold text-slate-900">Registration & Attendance Trends</h3>
-            <p className="text-xs text-slate-400">Monthly student participation activity</p>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Registration & Attendance Trends</h3>
+            <p className="text-xs text-slate-400 dark:text-slate-500">Monthly student participation activity</p>
           </div>
 
           <div className="h-64 w-full">
@@ -184,9 +184,9 @@ export default function AdminDashboard() {
                     <stop offset="95%" stopColor="#10B981" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
-                <XAxis dataKey="month" tick={{ fontSize: 11 }} />
-                <YAxis tick={{ fontSize: 11 }} />
-                <Tooltip />
+                <XAxis dataKey="month" tick={{ fontSize: 11, fill: '#94a3b8' }} />
+                <YAxis tick={{ fontSize: 11, fill: '#94a3b8' }} />
+                <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '12px', color: '#f8fafc' }} />
                 <Legend iconType="circle" wrapperStyle={{ fontSize: 11 }} />
                 <Area type="monotone" dataKey="registrations" stroke="#4F46E5" fillOpacity={1} fill="url(#colorReg)" name="Registrations" />
                 <Area type="monotone" dataKey="attendance" stroke="#10B981" fillOpacity={1} fill="url(#colorAtt)" name="Attendance" />
@@ -196,10 +196,10 @@ export default function AdminDashboard() {
         </div>
 
         {/* Events by Category Distribution Pie Chart */}
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-xs space-y-4">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 shadow-xs space-y-4 transition-colors">
           <div>
-            <h3 className="text-sm font-bold text-slate-900">Events by Category</h3>
-            <p className="text-xs text-slate-400">Distribution across campus domains</p>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Events by Category</h3>
+            <p className="text-xs text-slate-400 dark:text-slate-500">Distribution across campus domains</p>
           </div>
 
           <div className="h-64 w-full flex items-center justify-center">
@@ -220,12 +220,12 @@ export default function AdminDashboard() {
                       <Cell key={`cell-${index}`} fill={CATEGORY_COLORS[index % CATEGORY_COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip />
+                  <Tooltip contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '12px', color: '#f8fafc' }} />
                   <Legend wrapperStyle={{ fontSize: 11 }} />
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              <span className="text-xs text-slate-400">No category event data</span>
+              <span className="text-xs text-slate-400 dark:text-slate-500">No category event data</span>
             )}
           </div>
         </div>
@@ -235,45 +235,44 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Link
           to="/admin/approvals"
-          className="p-5 rounded-3xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all flex items-center justify-between group"
+          className="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-md transition-all flex items-center justify-between group"
         >
           <div>
-            <div className="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+            <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
               Event Review Queue
             </div>
-            <div className="text-[11px] text-slate-400 mt-0.5">Approve or reject submitted events</div>
+            <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Approve or reject submitted events</div>
           </div>
-          <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
+          <ArrowRight className="w-4 h-4 text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" />
         </Link>
 
         <Link
           to="/admin/users"
-          className="p-5 rounded-3xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all flex items-center justify-between group"
+          className="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-md transition-all flex items-center justify-between group"
         >
           <div>
-            <div className="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+            <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
               User Accounts
             </div>
-            <div className="text-[11px] text-slate-400 mt-0.5">Manage students, organizers & roles</div>
+            <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Manage students, organizers & roles</div>
           </div>
-          <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
+          <ArrowRight className="w-4 h-4 text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" />
         </Link>
 
         <Link
           to="/admin/categories"
-          className="p-5 rounded-3xl bg-white border border-slate-200 hover:border-indigo-300 hover:shadow-md transition-all flex items-center justify-between group"
+          className="p-5 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 hover:shadow-md transition-all flex items-center justify-between group"
         >
           <div>
-            <div className="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+            <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
               Manage Categories
             </div>
-            <div className="text-[11px] text-slate-400 mt-0.5">Configure event taxonomies & icons</div>
+            <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Configure event taxonomies & icons</div>
           </div>
-          <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" />
+          <ArrowRight className="w-4 h-4 text-slate-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" />
         </Link>
       </div>
 
     </div>
   );
 }
-

@@ -65,3 +65,4 @@ Before opening a PR, always ensure tests pass locally:
 npm run build
 ```
 *(GitHub Actions CI will also automatically test every push and pull request).*
+

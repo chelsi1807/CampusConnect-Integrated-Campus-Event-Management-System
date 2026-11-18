@@ -31,7 +31,6 @@ export default function FeedbackModal({ isOpen, onClose, eventId, eventTitle, on
     e.preventDefault();
     setSubmitting(true);
     setError(null);
-
     try {
       await api.post('/feedback/', {
         event_id: eventId,
@@ -54,17 +53,17 @@ export default function FeedbackModal({ isOpen, onClose, eventId, eventTitle, on
 
   const StarSelector = ({ value, onChange, label }) => (
     <div className="flex items-center justify-between py-1">
-      <span className="text-xs text-slate-600 font-medium">{label}</span>
+      <span className="text-xs text-slate-600 dark:text-slate-300 font-medium">{label}</span>
       <div className="flex items-center gap-1">
         {[1, 2, 3, 4, 5].map((star) => (
           <button
             key={star}
             type="button"
             onClick={() => onChange(star)}
-            className="p-1 text-slate-300 hover:text-amber-400 focus:outline-none transition-colors"
+            className="p-1 text-slate-300 dark:text-slate-600 hover:text-amber-400 focus:outline-none transition-colors"
           >
             <Star
-              className={`w-4 h-4 ${star <= value ? 'text-amber-400 fill-amber-400' : 'text-slate-200'}`}
+              className={`w-4 h-4 ${star <= value ? 'text-amber-400 fill-amber-400' : 'text-slate-200 dark:text-slate-700'}`}
             />
           </button>
         ))}
@@ -76,35 +75,35 @@ export default function FeedbackModal({ isOpen, onClose, eventId, eventTitle, on
     <dialog
       ref={dialogRef}
       onClose={onClose}
-      className="p-0 rounded-3xl shadow-2xl bg-white max-w-md w-full mx-auto backdrop:bg-slate-900/60 backdrop:backdrop-blur-sm border border-slate-200"
+      className="p-0 rounded-3xl shadow-2xl bg-white dark:bg-slate-900 max-w-md w-full mx-auto backdrop:bg-slate-950/70 backdrop:backdrop-blur-sm border border-slate-200 dark:border-slate-800 transition-colors"
       aria-labelledby="feedback-title"
     >
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <span className="text-[11px] font-semibold text-indigo-600 uppercase tracking-wider">Participant Review</span>
-            <h3 id="feedback-title" className="text-base font-bold text-slate-900 mt-0.5 line-clamp-1">
+            <span className="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Participant Review</span>
+            <h3 id="feedback-title" className="text-base font-bold text-slate-900 dark:text-white mt-0.5 line-clamp-1">
               {eventTitle}
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600"
+            className="p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs">
+          <div className="mb-4 p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 text-rose-700 dark:text-rose-300 text-xs">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-2">
-            <div className="text-center pb-2 border-b border-slate-200/60">
-              <span className="text-xs font-semibold text-slate-700 block mb-1">Overall Event Rating</span>
+          <div className="bg-slate-50 dark:bg-slate-800/80 rounded-2xl p-4 border border-slate-100 dark:border-slate-700/60 space-y-2">
+            <div className="text-center pb-2 border-b border-slate-200/60 dark:border-slate-700/60">
+              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1">Overall Event Rating</span>
               <div className="flex justify-center gap-1.5">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <button
@@ -114,7 +113,7 @@ export default function FeedbackModal({ isOpen, onClose, eventId, eventTitle, on
                     className="p-1 hover:scale-110 transition-transform"
                   >
                     <Star
-                      className={`w-7 h-7 ${star <= rating ? 'text-amber-400 fill-amber-400' : 'text-slate-200'}`}
+                      className={`w-7 h-7 ${star <= rating ? 'text-amber-400 fill-amber-400' : 'text-slate-200 dark:text-slate-700'}`}
                     />
                   </button>
                 ))}
@@ -129,7 +128,7 @@ export default function FeedbackModal({ isOpen, onClose, eventId, eventTitle, on
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1">
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
               Comments & Suggestions (Optional)
             </label>
             <textarea
@@ -137,7 +136,7 @@ export default function FeedbackModal({ isOpen, onClose, eventId, eventTitle, on
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder="What did you like most? What could the organizers improve?"
-              className="w-full text-xs p-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500"
+              className="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500"
             ></textarea>
           </div>
 
@@ -145,14 +144,14 @@ export default function FeedbackModal({ isOpen, onClose, eventId, eventTitle, on
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700"
+              className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="px-5 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-100 flex items-center gap-1.5 disabled:opacity-50"
+              className="px-5 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-100 dark:shadow-none flex items-center gap-1.5 disabled:opacity-50"
             >
               <Send className="w-3.5 h-3.5" />
               <span>{submitting ? 'Submitting...' : 'Submit Feedback'}</span>
@@ -163,4 +162,3 @@ export default function FeedbackModal({ isOpen, onClose, eventId, eventTitle, on
     </dialog>
   );
 }
-

@@ -104,11 +104,12 @@ export default function EventDetails() {
 
   const handleCancelRegistration = async () => {
     if (!userRegistration) return;
-    if (!window.confirm("Are you sure you want to cancel your registration? If you cancel, your seat will be automatically offered to the next waitlisted student.")) return;
+    if (!window.confirm("Are you sure you want to cancel your registration? Your seat will be transferred to the waitlist.")) return;
 
     try {
       setActionLoading(true);
-      await api.post(`/registrations/${userRegistration.id}/cancel`);
+      await api.delete(`/registrations/${userRegistration.id}`);
+      setUserRegistration(null);
       await fetchEventDetails();
     } catch (err) {
       setErrorMsg(err.response?.data?.detail || "Failed to cancel registration.");
@@ -119,19 +120,23 @@ export default function EventDetails() {
 
   if (loading) {
     return (
-      <div className="max-w-5xl mx-auto px-4 py-16 text-center">
-        <div className="w-8 h-8 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
-        <p className="text-xs text-slate-500">Loading event details...</p>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-pulse space-y-6">
+        <div className="h-6 w-32 bg-slate-200 dark:bg-slate-800 rounded"></div>
+        <div className="h-80 bg-slate-200 dark:bg-slate-800 rounded-3xl"></div>
+        <div className="grid grid-cols-3 gap-6">
+          <div className="col-span-2 h-40 bg-slate-200 dark:bg-slate-800 rounded-2xl"></div>
+          <div className="h-40 bg-slate-200 dark:bg-slate-800 rounded-2xl"></div>
+        </div>
       </div>
     );
   }
 
-  if (errorMsg && !event) {
+  if (!event) {
     return (
-      <div className="max-w-md mx-auto my-16 p-6 bg-white rounded-2xl border border-slate-200 text-center shadow-sm">
+      <div className="max-w-md mx-auto my-16 p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 text-center shadow-sm">
         <AlertCircle className="w-10 h-10 text-rose-500 mx-auto mb-2" />
-        <h2 className="text-base font-bold text-slate-900">Event Not Available</h2>
-        <p className="text-xs text-slate-500 mt-1 mb-4">{errorMsg}</p>
+        <h2 className="text-base font-bold text-slate-900 dark:text-white">Event Not Available</h2>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">{errorMsg}</p>
         <Link to="/events" className="px-4 py-2 text-xs font-semibold bg-indigo-600 text-white rounded-xl">
           Back to Events
         </Link>
@@ -151,7 +156,7 @@ export default function EventDetails() {
       <div>
         <Link
           to="/events"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-indigo-600 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to All Events</span>
@@ -159,14 +164,14 @@ export default function EventDetails() {
       </div>
 
       {errorMsg && (
-        <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
+        <div className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 text-rose-700 dark:text-rose-300 text-xs flex items-center gap-2">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{errorMsg}</span>
         </div>
       )}
 
       {/* Main Event Card */}
-      <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-sm overflow-hidden transition-colors">
         
         {/* Banner with overlaid elements */}
         <div className="relative h-64 sm:h-80 w-full bg-slate-900 overflow-hidden">
@@ -179,7 +184,7 @@ export default function EventDetails() {
 
           <div className="absolute top-4 left-4 flex gap-2">
             {event.category && (
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 backdrop-blur-md text-slate-800 shadow">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-800 dark:text-slate-200 shadow">
                 {event.category.name}
               </span>
             )}
@@ -202,46 +207,46 @@ export default function EventDetails() {
           {/* Left 2 Columns: Description & Details */}
           <div className="lg:col-span-2 space-y-6">
             <div>
-              <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2">
+              <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">
                 About this Event
               </h2>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed whitespace-pre-line">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">
                 {event.description}
               </p>
             </div>
 
             {/* Quick Metadata Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-100">
-              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3">
-                <Calendar className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-850/80 border border-slate-100 dark:border-slate-800 flex items-start gap-3">
+                <Calendar className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">Date & Time</span>
-                  <span className="text-xs font-bold text-slate-800 block mt-0.5">{event.date}</span>
-                  <span className="text-xs text-slate-500">{event.start_time} - {event.end_time}</span>
+                  <span className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Date & Time</span>
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 block mt-0.5">{event.date}</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">{event.start_time} - {event.end_time}</span>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-start gap-3">
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-850/80 border border-slate-100 dark:border-slate-800 flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block">Campus Venue</span>
-                  <span className="text-xs font-bold text-slate-800 block mt-0.5">{event.venue}</span>
-                  <span className="text-xs text-slate-500">Official Campus Location</span>
+                  <span className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider block">Campus Venue</span>
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 block mt-0.5">{event.venue}</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">Official Campus Location</span>
                 </div>
               </div>
             </div>
 
             {/* Eligibility & Guidelines */}
-            <div className="p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100 space-y-1">
-              <div className="flex items-center gap-2 text-indigo-900 font-bold text-xs">
-                <ShieldCheck className="w-4 h-4 text-indigo-600" />
+            <div className="p-4 rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/50 space-y-1">
+              <div className="flex items-center gap-2 text-indigo-900 dark:text-indigo-300 font-bold text-xs">
+                <ShieldCheck className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                 <span>Eligibility & Rules</span>
               </div>
-              <p className="text-xs text-indigo-950/80 leading-relaxed">
+              <p className="text-xs text-indigo-950/80 dark:text-indigo-200/80 leading-relaxed">
                 {event.eligibility || 'Open to all registered university students.'}
               </p>
               {event.registration_deadline && (
-                <p className="text-[11px] text-indigo-700 font-medium pt-1">
+                <p className="text-[11px] text-indigo-700 dark:text-indigo-300 font-medium pt-1">
                   Registration Closes: <b>{event.registration_deadline}</b>
                 </p>
               )}
@@ -249,16 +254,16 @@ export default function EventDetails() {
 
             {/* Organizer Card */}
             {event.organizer && (
-              <div className="flex items-center gap-3 p-4 rounded-2xl border border-slate-100 bg-slate-50">
+              <div className="flex items-center gap-3 p-4 rounded-2xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-850/60">
                 <img
                   src={event.organizer.avatar_url || `https://api.dicebear.com/7.x/initials/svg?seed=${event.organizer.full_name}`}
                   alt={event.organizer.full_name}
-                  className="w-10 h-10 rounded-xl object-cover ring-2 ring-indigo-200"
+                  className="w-10 h-10 rounded-xl object-cover ring-2 ring-indigo-200 dark:ring-indigo-900"
                 />
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Event Organizer</span>
-                  <div className="text-xs font-bold text-slate-900">{event.organizer.full_name}</div>
-                  <div className="text-[11px] text-slate-500">{event.organizer.department || 'Campus Department'}</div>
+                  <span className="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 tracking-wider">Event Organizer</span>
+                  <div className="text-xs font-bold text-slate-900 dark:text-white">{event.organizer.full_name}</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400">{event.organizer.department || 'Campus Department'}</div>
                 </div>
               </div>
             )}
@@ -266,18 +271,18 @@ export default function EventDetails() {
 
           {/* Right Column: Capacity & Registration Box */}
           <div className="space-y-6">
-            <div className="bg-slate-50/80 rounded-2xl p-5 border border-slate-200/80 space-y-5">
+            <div className="bg-slate-50/80 dark:bg-slate-850/70 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 space-y-5 transition-colors">
               
               <div className="flex justify-between items-center">
-                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">Seat Availability</span>
-                <span className={`text-xs font-extrabold ${isFull ? 'text-amber-600' : 'text-indigo-600'}`}>
+                <span className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Seat Availability</span>
+                <span className={`text-xs font-extrabold ${isFull ? 'text-amber-600 dark:text-amber-400' : 'text-indigo-600 dark:text-indigo-400'}`}>
                   {confirmed} / {capacity}
                 </span>
               </div>
 
               {/* Progress bar */}
               <div className="space-y-1.5">
-                <div className="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                <div className="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
                   <div
                     className={`h-full rounded-full transition-all duration-300 ${
                       isFull ? 'bg-amber-500' : percentFilled > 80 ? 'bg-orange-500' : 'bg-indigo-600'
@@ -285,7 +290,7 @@ export default function EventDetails() {
                     style={{ width: `${percentFilled}%` }}
                   ></div>
                 </div>
-                <div className="flex justify-between text-[11px] text-slate-500 font-medium">
+                <div className="flex justify-between text-[11px] text-slate-500 dark:text-slate-400 font-medium">
                   <span>{percentFilled}% booked</span>
                   <span>{isFull ? `Waitlist: ${event.waitlist_count || 0}` : `${event.remaining_seats} seats open`}</span>
                 </div>
@@ -295,12 +300,12 @@ export default function EventDetails() {
               {userRegistration ? (
                 <div className="space-y-3 pt-2">
                   {userRegistration.status === 'confirmed' || userRegistration.status === 'attended' ? (
-                    <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl space-y-2">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <div className="p-3.5 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 rounded-xl space-y-2">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-300">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                         <span>Seat Confirmed</span>
                       </div>
-                      <p className="text-[11px] text-emerald-700 leading-tight">
+                      <p className="text-[11px] text-emerald-700 dark:text-emerald-300/90 leading-tight">
                         Your registration is active. Present your QR entry pass at the event door.
                       </p>
                       <button
@@ -312,12 +317,12 @@ export default function EventDetails() {
                       </button>
                     </div>
                   ) : userRegistration.status === 'waitlisted' ? (
-                    <div className="p-3.5 bg-amber-50 border border-amber-200 rounded-xl space-y-2">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-amber-800">
-                        <Clock className="w-4 h-4 text-amber-600" />
+                    <div className="p-3.5 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 rounded-xl space-y-2">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-amber-800 dark:text-amber-300">
+                        <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                         <span>Waitlisted (Queue #{userRegistration.waitlist_position})</span>
                       </div>
-                      <p className="text-[11px] text-amber-700 leading-tight">
+                      <p className="text-[11px] text-amber-700 dark:text-amber-300/90 leading-tight">
                         You will be automatically promoted to confirmed if any attendee cancels!
                       </p>
                     </div>
@@ -327,7 +332,7 @@ export default function EventDetails() {
                     <button
                       onClick={handleCancelRegistration}
                       disabled={actionLoading}
-                      className="w-full py-2 text-xs font-semibold text-rose-600 hover:text-rose-800 hover:bg-rose-50 rounded-xl transition-colors"
+                      className="w-full py-2 text-xs font-semibold text-rose-600 dark:text-rose-400 hover:text-rose-800 dark:hover:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-xl transition-colors"
                     >
                       Cancel My Registration
                     </button>
@@ -336,11 +341,11 @@ export default function EventDetails() {
               ) : (
                 <div className="pt-2">
                   {event.status === 'completed' ? (
-                    <div className="p-3 text-center bg-slate-100 rounded-xl text-xs text-slate-500 font-medium">
+                    <div className="p-3 text-center bg-slate-100 dark:bg-slate-800 rounded-xl text-xs text-slate-500 dark:text-slate-400 font-medium">
                       This event has concluded.
                     </div>
                   ) : event.status !== 'approved' ? (
-                    <div className="p-3 text-center bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 font-medium">
+                    <div className="p-3 text-center bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 rounded-xl text-xs text-amber-800 dark:text-amber-300 font-medium">
                       Event is currently {event.status}. Registration unavailable.
                     </div>
                   ) : (
@@ -373,10 +378,10 @@ export default function EventDetails() {
 
               {/* Feedback Button for Attended Students */}
               {userRegistration && userRegistration.status === 'attended' && (
-                <div className="pt-2 border-t border-slate-200">
+                <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
                   <button
                     onClick={() => setShowFeedbackModal(true)}
-                    className="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-semibold bg-indigo-50 hover:bg-indigo-100 text-indigo-700 transition-colors"
+                    className="w-full flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 transition-colors"
                   >
                     <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
                     <span>Submit Event Feedback</span>
@@ -386,7 +391,7 @@ export default function EventDetails() {
             </div>
 
             {/* Quick Share / Info */}
-            <div className="text-center text-xs text-slate-400 flex items-center justify-center gap-1">
+            <div className="text-center text-xs text-slate-400 dark:text-slate-500 flex items-center justify-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
               <span>CampusConnect Verified Event</span>
             </div>
@@ -396,55 +401,55 @@ export default function EventDetails() {
 
       {/* Post-Event Feedback & Ratings Section */}
       {feedbackSummary && feedbackSummary.total_feedbacks > 0 && (
-        <div className="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
-          <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 pb-4 border-b border-slate-100">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-sm p-6 sm:p-8 space-y-6">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 pb-4 border-b border-slate-100 dark:border-slate-800">
             <div>
-              <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">Attendee Insights</span>
-              <h3 className="text-lg font-bold text-slate-900 mt-0.5">Participant Ratings & Reviews</h3>
+              <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">Attendee Insights</span>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mt-0.5">Participant Ratings & Reviews</h3>
             </div>
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1 bg-amber-50 text-amber-800 px-3 py-1.5 rounded-xl border border-amber-200 font-bold text-sm">
+              <div className="flex items-center gap-1 bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 px-3 py-1.5 rounded-xl border border-amber-200 dark:border-amber-900/60 font-bold text-sm">
                 <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
                 <span>{feedbackSummary.average_rating} / 5.0</span>
               </div>
-              <span className="text-xs text-slate-400">({feedbackSummary.total_feedbacks} verified reviews)</span>
+              <span className="text-xs text-slate-400 dark:text-slate-500">({feedbackSummary.total_feedbacks} verified reviews)</span>
             </div>
           </div>
 
           {/* Sub-ratings breakdown */}
           <div className="grid grid-cols-3 gap-3 text-center">
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-              <div className="text-xs font-bold text-slate-800">{feedbackSummary.average_content} / 5</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">Content Quality</div>
+            <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700/60">
+              <div className="text-xs font-bold text-slate-800 dark:text-slate-200">{feedbackSummary.average_content} / 5</div>
+              <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Content Quality</div>
             </div>
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-              <div className="text-xs font-bold text-slate-800">{feedbackSummary.average_organization} / 5</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">Organization</div>
+            <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700/60">
+              <div className="text-xs font-bold text-slate-800 dark:text-slate-200">{feedbackSummary.average_organization} / 5</div>
+              <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Organization</div>
             </div>
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
-              <div className="text-xs font-bold text-slate-800">{feedbackSummary.average_venue} / 5</div>
-              <div className="text-[11px] text-slate-400 mt-0.5">Venue & Logistics</div>
+            <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700/60">
+              <div className="text-xs font-bold text-slate-800 dark:text-slate-200">{feedbackSummary.average_venue} / 5</div>
+              <div className="text-[11px] text-slate-400 dark:text-slate-500 mt-0.5">Venue & Logistics</div>
             </div>
           </div>
 
           {/* Recent Reviews list */}
           <div className="space-y-3 pt-2">
-            <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider">Student Comments</h4>
+            <h4 className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Student Comments</h4>
             <div className="space-y-2.5">
               {feedbackSummary.recent_feedbacks.map((fb) => (
-                <div key={fb.id} className="p-4 rounded-2xl bg-slate-50/80 border border-slate-100 text-xs space-y-1.5">
+                <div key={fb.id} className="p-4 rounded-2xl bg-slate-50/80 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700/60 text-xs space-y-1.5">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-1">
                       {[...Array(fb.rating)].map((_, i) => (
                         <Star key={i} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
                       ))}
                     </div>
-                    <span className="text-[10px] text-slate-400">
+                    <span className="text-[10px] text-slate-400 dark:text-slate-500">
                       {new Date(fb.created_at).toLocaleDateString()}
                     </span>
                   </div>
                   {fb.comment && (
-                    <p className="text-slate-600 leading-relaxed italic">"{fb.comment}"</p>
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed italic">"{fb.comment}"</p>
                   )}
                 </div>
               ))}
@@ -474,4 +479,3 @@ export default function EventDetails() {
     </div>
   );
 }
-

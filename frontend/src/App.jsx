@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { NotificationProvider } from './context/NotificationContext';
+import { ThemeProvider } from './context/ThemeContext';
 
 // Components
 import Navbar from './components/Navbar';
@@ -40,10 +41,11 @@ import ManageCategories from './pages/admin/ManageCategories';
 export default function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <NotificationProvider>
-          <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
-            <Navbar />
+      <ThemeProvider>
+        <AuthProvider>
+          <NotificationProvider>
+            <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-150">
+              <Navbar />
             
             <main className="flex-1">
               <Routes>
@@ -189,9 +191,10 @@ export default function App() {
             </main>
 
             <Footer />
-          </div>
-        </NotificationProvider>
-      </AuthProvider>
+            </div>
+          </NotificationProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }
